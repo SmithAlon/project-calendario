@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { usuariosRegistrados } from './usuarios.js';
+import { pedirPermisoNotificaciones, mostrarNotificacion } from './serviceWorkerHelper.js';
 
 export function Registro() {
   const [correo, setCorreo] = useState('');
@@ -37,6 +38,12 @@ export function Registro() {
       const nuevoUsuario = { correo, password };
       usuariosRegistrados.push(nuevoUsuario);
       console.log('Registro exitoso:', nuevoUsuario);
+      
+      // Lanzar notificación push de registro exitoso
+      mostrarNotificacion("Registro exitoso");
+
+      // Pedir permiso para notificaciones
+      pedirPermisoNotificaciones();
     } else {
       console.log('Registro fallido');
     }

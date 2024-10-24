@@ -2,6 +2,7 @@ import './components.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usuariosRegistrados } from './usuarios.js';
+import { pedirPermisoNotificaciones, mostrarNotificacion } from './serviceWorkerHelper.js';
 
 export function Formulario() {
   const [correo, setCorreo] = useState('');
@@ -10,10 +11,15 @@ export function Formulario() {
 
   const handleIngresar = () => {
     if (validarUsuario()) {
-      console.log('Ingreso exitoso');
-      // Aquí puedes redirigir al usuario a otra página si es necesario
+      console.log('Ingreso exitoso!');
+      
+      // Lanzar notificación push de inicio de sesión exitoso
+      mostrarNotificacion("¡Inicio de sesión exitoso!");
+
+      // Pedir permiso para notificaciones
+      pedirPermisoNotificaciones();
     } else {
-      console.log('Correo o contraseña incorrectos');
+      console.log('Correo o contraseña incorrectos, inténtelo de nuevo. ');
     }
   };
 
@@ -33,11 +39,13 @@ export function Formulario() {
         <h1>Iniciar Sesión</h1>
         <input 
           type="text"
+          placeholder="Correo"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
         />
         <input 
           type="password"
+          placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
