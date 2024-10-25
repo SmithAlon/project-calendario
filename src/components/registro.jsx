@@ -45,7 +45,10 @@ export function Registro() {
       // Pedir permiso para notificaciones
       pedirPermisoNotificaciones();
     } else {
-      console.log('Registro fallido');
+      mostrarNotificacion("Registro Fallido. Revisa el correo o las contraseñas");
+
+      // Pedir permiso para notificaciones
+      pedirPermisoNotificaciones();
     }
   };
 

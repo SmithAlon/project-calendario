@@ -25,3 +25,8 @@
   flex-direction: center;
   gap: 1rem;
 }
+
+.simon {
+  display: flex;
+  justify-content: flex-start;
+}

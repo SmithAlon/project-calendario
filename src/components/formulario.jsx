@@ -18,8 +18,9 @@ export function Formulario() {
 
       // Pedir permiso para notificaciones
       pedirPermisoNotificaciones();
+      navigate('/calendario');
     } else {
-      console.log('Correo o contraseña incorrectos, inténtelo de nuevo. ');
+      mostrarNotificacion('Correo o contraseña incorrectos, inténtelo de nuevo. ');
     }
   };
 
